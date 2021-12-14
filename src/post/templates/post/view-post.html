@@ -1,0 +1,30 @@
+{% extends 'index.html' %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-2 d-sm-none d-xs-none d-md-block">
+            {{post.author}}
+            Author details
+        </div>
+        <div class="col-md-8 col-sm-12 ">
+            <div class="container">
+                <h1>{{post.post_title}}</h1>
+                <div class="subtitle">
+                    {% for tag in post.post_tags.all %}
+                    <span>{{ tag }}</span>
+                    {% endfor %}<span>|</span>
+                    <span>{{ post.post_published }} created&nbsp;|</span>
+                    <span>{{ post.post_updated}} last modified</span>
+                </div>
+                <div class="col-sm-12 d-md-none">
+                    <p>Mark</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2 d-sm-none d-md-block">
+            <h4>Related&nbsp;Posts</h4>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

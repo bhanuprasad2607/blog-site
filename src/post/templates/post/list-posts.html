@@ -1,0 +1,26 @@
+{% extends 'index.html' %}
+{% block title %}Posts{% endblock title %}
+
+
+{% block content %}
+{% for post in posts %}
+<div class="card" style="width: 50rem;margin:20px 25%;">
+    <div class="card-body">
+        <h5 class="card-title">{{post.post_title}}</h5>
+        <small class="card-subtitle mb-2">
+            {% for tag in post.post_tags.all %}
+            <span style="padding-right: 5px;">{{tag}}</span>
+            {% endfor %}
+            {% if post.post_published == post.post_updated %}
+            <span style="padding-right: 5px;">{{post.post_published}} created</span>
+            {% else%}
+            <span style="padding-right: 5px;">{{post.post_updated}} last modified</span>
+            {% endif %}
+        </small>
+        <p class="card-text">{{post.post_description}}</p>
+        <a href="{% url 'view_post' post.post_id %}" class="card-link">Read Now</a>
+        <a href="#" class="card-link">Read Later</a>
+    </div>
+</div>
+{% endfor %}
+{% endblock content %}
